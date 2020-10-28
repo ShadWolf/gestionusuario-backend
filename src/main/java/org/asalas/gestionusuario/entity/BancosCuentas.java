@@ -1,32 +1,30 @@
 package org.asalas.gestionusuario.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.Setter;
 
-
-@Setter
 @Getter
+@Setter
 @Entity
-public class Cuentas {
+public class BancosCuentas {
+
 	@Id
 	@GeneratedValue
 	private int id;
 	
-	@OneToMany
-	@JoinColumn(name = "clientes", referencedColumnName= "Id" )
-	private List<Clientes> idCliente= new ArrayList<>();
+	@Column
+	@OneToOne(name = "Cuentas")
+	private Cuentas cuenta;
 	
-	@Column(length=200)
-	private String cuenta;
-
+	@Column
+	@OneToOne(name ="Banco")
+	private Bancos banco;
+	
 }
